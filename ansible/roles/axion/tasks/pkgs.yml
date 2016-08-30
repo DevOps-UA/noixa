@@ -1,0 +1,9 @@
+---
+- name: install os pkgs
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - vim
+    - tmux
+    - mercurial

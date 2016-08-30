@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home-nfs/asb/rcs/ttic-web/themes'
+let g:netrw_dirhist_2='/home-nfs/asb/rcs/ttic-web/themes/ttic'
+let g:netrw_dirhist_3='/home-nfs/asb/rcs/ttic-web/themes/ttic/layouts'
+let g:netrw_dirhist_4='/home-nfs/asb/rcs/ttic-web/themes/ttic/layouts/_default'
+let g:netrw_dirhist_5='/home-nfs/asb/rcs/noixa'
+let g:netrw_dirhist_6='/home-nfs/asb/rcs'
+let g:netrw_dirhist_7='/home-nfs/asb'
+let g:netrw_dirhist_8='/home-nfs/asb/rcs/ttic-infra/ansible/roles/ssh/tasks'

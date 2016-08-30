@@ -1,0 +1,7 @@
+---
+- include: sshd.yml
+- include: dots.yml
+- include: pkgs.yml
+- include: docker.yml
+- include: vault.yml
+- include: repos.yml

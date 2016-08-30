@@ -1,0 +1,32 @@
+---
+- name: load vault
+  include_vars: vault.yml
+  no_log: true
+
+- name: place .vault_password
+  copy:
+    content: "{{ axion_vault_password }}"
+    dest: ~axion/.vault_password
+    mode: 0400
+    owner: axion
+  no_log: true
+
+- name: place .vault_password_infra
+  copy:
+    content: "{{ axion_vault_password_infra }}"
+    dest: ~axion/.vault_password_infra
+    mode: 0400
+    owner: axion
+  no_log: true
+
+- name: place private_key
+  copy:
+    content: "{{ axion_private_key }}"
+    dest: ~axion/.ssh/private_key
+    mode: 0400
+    owner: axion
+  no_log: true
+  notify:
+    - fail on private_key
+
+- meta: flush_handlers

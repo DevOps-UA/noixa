@@ -1,0 +1,9 @@
+---
+- name: restart sshd
+  service:
+    name: sshd
+    state: restarted
+
+- name: fail on private_key
+  fail:
+    msg: SSH private_key added re-login to load keys

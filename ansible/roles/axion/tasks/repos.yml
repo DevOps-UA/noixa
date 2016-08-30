@@ -1,0 +1,23 @@
+---
+- name: checkout loxodo
+  git:
+    repo: ssh://git@github.com/sommer/loxodo.git
+    dest: /home/axion/rcs/loxodo
+    accept_hostkey: yes
+  become: false
+
+- name: add loxodo.py to ~/bin
+  file:
+    state: link
+    src: /home/axion/rcs/loxodo/loxodo.py
+    dest: /home/axion/bin/loxodo
+    mode: 0755
+    remote_src: true
+  become: false
+
+- name: checkout ttic-infra
+  git:
+    repo: ssh://git@bitbucket.org/ttic-asb/ttic-infra.git
+    dest: /home/axion/rcs/ttic-infra
+    accept_hostkey: yes
+  become: false

@@ -1,0 +1,37 @@
+---
+- name: place dot files
+  copy:
+    src: "{{ item }}"
+    dest: "~axion/.{{ item }}"
+    owner: axion
+    group: axion
+  with_items:
+    - bash_profile
+    - bashrc
+    - gitconfig
+    - tmux.conf
+    - vimrc
+    - vimrc_background
+    - xinitrc
+    - xresources
+
+- name: place dot dirs
+  synchronize:
+    src: "{{ item }}/"
+    dest: "~axion/.{{ item }}/"
+  with_items:
+    - config
+    - vim
+
+- name: make bin dir
+  file:
+    path: /home/axion/bin
+    mode: 0755
+    owner: axion
+    group: axion
+    state: directory
+
+- name: ssh authorized_keys
+  authorized_key:
+    user: axion
+    key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCukHGs3Lo/5Kv9C7H5UVfy5Fe7vBuXo7Z8Shmi3liXMx/7wEMMvDZLzZUj2zCoEVcVATRiZevQAGoxvMnfi7diJxRUKNxYAOfqTfkHlwyoHnHQhrllqbmdwEFYgV4hncyuW0zvTJdQUpuCRv62NSDWP7bfH/gKkMmudEOcFzcjCUeFDmY/H8QlJrK9YfloU4d3vhZqXmrZmUJCp93V1NjOvI5yMvG9+0wytYuxZB4A94sknTqb2J0z8Z9RYThtX5pkZNeyCqP1gpOVjCR5UbbyHvB0atTObqCXj5YfDExNcIsuwgze6NzLLjMZ5qDgsdB+CgqAAo37p79gQpzxwDi9'

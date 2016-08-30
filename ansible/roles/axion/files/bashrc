@@ -1,0 +1,41 @@
+# .bashrc
+
+[ -t 1 ] || return
+
+if [ -f /etc/bashrc ] ; then
+  . /etc/bashrc
+fi
+
+export PATH=$PATH:~/bin
+
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+alias docker-clean='docker rm $(docker ps -a -q) && docker rmi  $(docker images -q)'
+alias tk='tmux kill-session -t '
+alias ta='tmux a -t '
+alias tn='tmux new-session -s '
+alias tl='tmux ls '
+alias pwdb='~/bin/loxodo ~/dropbox/docs/pwdb.psafe3'
+alias ansenv='. ~/rcs/ttic-infra/env.sh'
+
+function ezgit() {
+  git add .
+  git commit -a -m "$1"
+  git push -u origin master
+}
+
+function proxyssh() {
+  ssh -o "ProxyCommand=ssh -W %h:%p -q $1" $2
+}
+
+ssh-add -l &> /dev/null
+if [ "$?" = 2 ]; then
+  test -r ~/.ssh/ssh-agent && eval "$(<~/.ssh/ssh-agent)" > /dev/null
+  ssh-add -l &> /dev/null
+  if [ "$?" = 2 ]; then
+    (umask 066; ssh-agent > ~/.ssh/ssh-agent)
+    eval "$(<~/.ssh/ssh-agent)" > /dev/null
+    ssh-add ~/.ssh/private_key
+  fi
+fi

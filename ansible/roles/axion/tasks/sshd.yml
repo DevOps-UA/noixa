@@ -1,0 +1,31 @@
+---
+- name: disable ssh password authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+  notify: restart sshd
+
+- name: disable root ssh password access
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin without-password'
+    state: present
+  notify: restart sshd
+
+- name: disable gssapi authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^GSSAPIAuthentication'
+    line: 'GSSAPIAuthentication no'
+    state: present
+  notify: restart sshd
+
+- name: add ssh_users to AllowUsers
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^AllowUsers'
+    line: "AllowUsers root axion"
+  notify: restart sshd

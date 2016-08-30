@@ -1,0 +1,9 @@
+while true ; do
+  xsetroot -name "`date` `uptime | sed 's/.*,//'`"
+  sleep 1
+done &
+xrdb -load ~/.xresources
+setxkbmap -option ctrl:nocaps
+xinput set-prop 'SteelSeries Kinzu V2 Gaming Mouse' 'Device Accel Profile' 4
+xinput set-prop 'SteelSeries Kinzu V2 Gaming Mouse' 'Device Accel Constant Deceleration' 2
+exec dwm

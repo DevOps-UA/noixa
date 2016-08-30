@@ -1,0 +1,18 @@
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
+set nocompatible
+set tabstop=2
+set shiftwidth=2
+set smarttab
+set softtabstop=2
+set expandtab
+syntax on
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'pearofducks/ansible-vim'
+
+call plug#end()

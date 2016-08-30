@@ -1,0 +1,27 @@
+---
+- name: place docker.repo
+  copy:
+    src: docker.repo
+    dest: /etc/yum.repos.d/docker.repo
+
+- name: install docker
+  package:
+    name: docker-engine
+    state: latest
+
+- name: start and enable docker
+  service:
+    name: docker
+    state: started
+    enabled: true
+
+- name: add docker group
+  group:
+    name: docker
+    state: present
+
+- name: add docker users to docker group
+  user:
+    name: axion
+    groups: docker
+    append: yes

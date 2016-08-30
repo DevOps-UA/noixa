@@ -1,0 +1,3 @@
+! xterm
+UXTerm*font: -*-terminus-medium-*-*-*-14-*-*-*-*-*-*-*
+UXTerm*.scrollBar: false
