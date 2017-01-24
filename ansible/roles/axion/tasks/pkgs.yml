@@ -7,16 +7,28 @@
     - vim
     - tmux
     - mercurial
-
-- name: install url pkgs
-  yum:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - https://packages.chef.io/stable/el/7/chefdk-0.17.17-1.el7.x86_64.rpm
+    - golang
+    - tree
+    - gcc
+    - make
+    - kernel-devel
+    - python-virtualenv
 
 - name: install pip pkgs
   pip:
     name: "{{ item }}"
   with_items:
     - molecule
+
+- name: install url pkgs
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1-5.1.6_110634_el7-1.x86_64.rpm
+    - https://releases.hashicorp.com/vagrant/1.8.6/vagrant_1.8.6_x86_64.rpm
+  register: url_pkgs
+
+- name: run vbox config
+  command: sudo /sbin/vboxconfig
+  when: url_pkgs | changed

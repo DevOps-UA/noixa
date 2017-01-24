@@ -21,3 +21,10 @@
     dest: /home/axion/rcs/ttic-infra
     accept_hostkey: yes
   become: false
+  
+- name: checkout iac
+  git:
+    repo: ssh://git@bitbucket.org/ttic-asb/iac.git
+    dest: /home/axion/rcs/iac
+    accept_hostkey: yes
+  become: false

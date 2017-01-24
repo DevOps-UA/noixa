@@ -18,6 +18,7 @@ alias tn='tmux new-session -s '
 alias tl='tmux ls '
 alias pwdb='~/bin/loxodo ~/dropbox/docs/pwdb.psafe3'
 alias ansenv='. ~/rcs/ttic-infra/env.sh'
+alias iacenv='. ~/rcs/iac/env.sh'
 
 function ezgit() {
   git add .

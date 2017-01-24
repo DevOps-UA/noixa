@@ -5,3 +5,4 @@
 - include: docker.yml
 - include: vault.yml
 - include: repos.yml
+- include: hugo.yml
